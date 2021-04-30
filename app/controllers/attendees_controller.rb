@@ -1,16 +1,14 @@
 class AttendeesController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
 
-def create
+  def create
     @attendee = Attendee.new(attendee_params)
 
     @attendee.save
     redirect_to root_path
-end
+  end
 
-
-    def attendee_params
-        params.require(:attendee).permit(:event_id, :user_id)
-    end
-    
+  def attendee_params
+    params.require(:attendee).permit(:event_id, :user_id)
+  end
 end
