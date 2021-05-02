@@ -1,0 +1,76 @@
+<div class='col-12 d-flex justify-content-between mb-3'>
+<div class=''></div>
+<h2 class="text-center">Event's that created by <%= @user.email %></h2>
+<%= link_to 'Back to MainPage', events_path, class:"btn btn-secondary text-white" %>
+</div>
+<div class="row row-cols-4 g-4">
+<% @user.events.each do |event| %>
+    <div class="col">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <p><%= event.attendees.count %> people coming!</p>
+          <h4 class="text-dark"><%= link_to event.title, event_path(event.id), class:"text-dark text-decoration-none" %></h4>  
+          <%= event.location %>
+        </div>
+        <div class="card-body">
+          <%= event.description %>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p class="fs-6 text-dark">Created By: <%= event.user.email %></p>
+          <p class="fs-6 text-dark">Event Date: <%= event.date %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
+
+<h2 class="text-center mt-4 mb-2">Event's that <%= @user.email %> will attend</h2>
+<div class="row row-cols-4 g-4">
+<% @user.attendees.each do |event| %>
+<%= next if event.event.date < Date.today %>
+    <div class="col">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <p><%= event.event.attendees.count %> people coming!</p>
+          <h4 class="text-dark"><%= link_to event.event.title, event_path(event.event.id), class:"text-dark text-decoration-none" %></h4>
+          <%= event.event.location %>
+        </div>
+        <div class="card-body">
+          <%= event.event.description %>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p class="fs-6 text-dark">Created By: <%= event.event.user.email %></p>
+          <p class="fs-6 text-dark">Event Date: <%= event.event.date %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
+<h2 class="text-center mt-4 mb-2">Event's that <%= @user.email %> attended in the past</h2>
+<div class="row row-cols-4 g-4">
+<% @user.attendees.each do |event| %>
+<%= next if event.event.date >= Date.today %>
+    <div class="col">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <p><%= event.event.attendees.count %> people coming!</p>
+          <h4 class="text-dark"><%= link_to event.event.title, event_path(event.event.id), class:"text-dark text-decoration-none" %></h4>
+          <%= event.event.location %>
+        </div>
+        <div class="card-body">
+          <%= event.event.description %>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p class="fs-6 text-dark">Created By: <%= event.event.user.email %></p>
+          <p class="fs-6 text-dark">Event Date: <%= event.event.date %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
