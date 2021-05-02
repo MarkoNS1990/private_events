@@ -2,7 +2,7 @@
 
     <h2 class="text-center mb-1"> Upcoming Events</h2>
     <div class="row row-cols-4 g-4">
-        <% @events.future.each do |event| %>
+        <% @upcoming_events.each do |event| %>
         <div class="col">
             <div class="card text-center">
                 <div class="card-header d-flex justify-content-between flex-column">
@@ -29,7 +29,7 @@
     <h2 class="text-center mb-1"> Completed Events </h2>
 
     <div class="row row-cols-4 g-4">
-        <% @events.expired.each do |event| %>
+        <% @past_events.each do |event| %>
         <div class="col">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
